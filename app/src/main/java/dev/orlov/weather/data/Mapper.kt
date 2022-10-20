@@ -11,7 +11,9 @@ fun GetForecastResponse.toDomain() = Weather(
 fun CurrentDto.toDomain() = Current(
     temp = temp_c,
     feelsLike = feelslike_c,
-    condition = condition.toDomain()
+    condition = condition.toDomain(),
+    wind = wind_kph,
+    humidity = humidity
 )
 
 fun ConditionDto.toDomain() = Condition(

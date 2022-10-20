@@ -11,6 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dev.orlov.weather.R
 import dev.orlov.weather.databinding.FragmentHomeBinding
+import dev.orlov.weather.databinding.TodayOverviewBinding
+import dev.orlov.weather.domain.model.Weather
 import dev.orlov.weather.utils.LoadState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -35,18 +37,47 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getForecast("Moscow")
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
-                    when(uiState.loadState) {
-                        LoadState.LOADING -> {}
+                    when (uiState.loadState) {
+                        LoadState.LOADING -> {
+                            binding.apply {
+                                mainGroup.visibility = View.GONE
+                            }
+                        }
                         LoadState.ERROR -> {}
-                        LoadState.SUCCESS -> {}
+                        LoadState.SUCCESS -> {
+                            uiState.weather?.let {
+                                setSuccessUi(it)
+                            }
+                        }
                     }
                 }
             }
         }
-        viewModel.getForecast("Moscow")
+    }
+
+    private fun setSuccessUi(weather: Weather) {
+        binding.apply {
+            mainGroup.visibility = View.VISIBLE
+            currentWeather.apply {
+                tvCurrentTemp.text = weather.current.temp.toString()
+                tvFeelsLike.text = weather.current.feelsLike.toString()
+                tvWeatherType.text = weather.current.condition.text
+            }
+            todayOverview.apply {
+                with(weather.forecast[0]) {
+                    tvMaxTempValue.text = this.maxTemp.toString()
+                    tvMinTempValue.text = this.minTemp.toString()
+                    tvSunriseValue.text = this.sunrise
+                    tvSunsetValue.text = this.sunset
+                }
+                tvWindValue.text = weather.current.wind.toString()
+                tvHumidityValue.text = weather.current.humidity.toString()
+            }
+        }
     }
 
     override fun onDestroyView() {
