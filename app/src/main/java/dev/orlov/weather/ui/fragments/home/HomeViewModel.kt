@@ -24,10 +24,10 @@ class HomeViewModel @Inject constructor(private val weatherUseCases: WeatherUseC
 
     private var getWeatherJob: Job? = null
 
-    fun getForecast(query: String) {
+    fun getForecast() {
         getWeatherJob?.cancel()
         getWeatherJob = viewModelScope.launch(Dispatchers.IO) {
-            weatherUseCases.getForecast(query).collect { request ->
+            weatherUseCases.getForecast("Irkutsk").collect { request ->
                 when (request) {
                     is Request.Error -> _uiState.update { it.copy(loadState = LoadState.ERROR) }
                     is Request.Loading -> _uiState.update { it.copy(loadState = LoadState.LOADING) }

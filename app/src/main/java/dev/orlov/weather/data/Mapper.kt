@@ -1,5 +1,6 @@
 package dev.orlov.weather.data
 
+import dev.orlov.weather.data.db.entity.CityEntity
 import dev.orlov.weather.data.network.model.*
 import dev.orlov.weather.domain.model.*
 
@@ -36,4 +37,20 @@ fun HourDto.toDomain() = Hour(
     temp = temp_c,
     time = time,
     condition = condition.toDomain()
+)
+
+fun CityEntity.toDomain() = City(
+    id = id ?: -1,
+    name = name,
+    lat = lat,
+    lon = lon,
+    isMain = isMain
+)
+
+fun City.toEntity() = CityEntity(
+    id = id,
+    name = name,
+    lat = lat,
+    lon = lon,
+    isMain = isMain
 )

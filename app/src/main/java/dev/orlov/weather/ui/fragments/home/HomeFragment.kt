@@ -37,17 +37,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getForecast("Moscow")
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
+                    if (uiState.isLocationSelected) {
+
+                    }
                     when (uiState.loadState) {
                         LoadState.LOADING -> {
-                            binding.apply {
-                                mainGroup.visibility = View.GONE
-                            }
+                            setLoadingUi()
                         }
-                        LoadState.ERROR -> {}
+                        LoadState.ERROR -> {
+                            setErrorUi()
+                        }
                         LoadState.SUCCESS -> {
                             uiState.weather?.let {
                                 setSuccessUi(it)
@@ -59,9 +61,30 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
+    private fun setUi() {
+        binding.apply {
+            swipeRefresh.setOnRefreshListener {
+                viewModel.getForecast()
+            }
+        }
+    }
+
+    private fun setLoadingUi() {
+        binding.apply {
+            swipeRefresh.isRefreshing = true
+        }
+    }
+
+    private fun setErrorUi() {
+        binding.apply {
+            swipeRefresh.isRefreshing = false
+        }
+    }
+
     private fun setSuccessUi(weather: Weather) {
         binding.apply {
             mainGroup.visibility = View.VISIBLE
+            swipeRefresh.isRefreshing = false
             currentWeather.apply {
                 tvCurrentTemp.text = weather.current.temp.toString()
                 tvFeelsLike.text = weather.current.feelsLike.toString()

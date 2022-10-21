@@ -97,4 +97,10 @@ dependencies {
     // Coil
     implementation "io.coil-kt:coil:$coil_version"
 
+    //Easy permissions
+    implementation "pub.devrel:easypermissions:$easy_permissions_version"
+
+    // Location Services
+    implementation "com.google.android.gms:play-services-location:$location_version"
+
 }
