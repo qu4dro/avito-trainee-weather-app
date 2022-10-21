@@ -40,7 +40,7 @@ fun HourDto.toDomain() = Hour(
 )
 
 fun CityEntity.toDomain() = City(
-    id = id ?: -1,
+    id = id,
     name = name,
     lat = lat,
     lon = lon,
