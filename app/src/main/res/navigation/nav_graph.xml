@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/searchFragment">
 
     <fragment
         tools:layout="@layout/fragment_home"
         android:id="@+id/homeFragment"
         android:name="dev.orlov.weather.ui.fragments.home.HomeFragment"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        tools:layout="@layout/fragment_search"
+        android:name="dev.orlov.weather.ui.fragments.search.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>

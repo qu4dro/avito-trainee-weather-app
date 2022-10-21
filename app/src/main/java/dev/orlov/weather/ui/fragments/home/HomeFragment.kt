@@ -40,9 +40,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
-                    if (uiState.isLocationSelected) {
-
-                    }
                     when (uiState.loadState) {
                         LoadState.LOADING -> {
                             setLoadingUi()

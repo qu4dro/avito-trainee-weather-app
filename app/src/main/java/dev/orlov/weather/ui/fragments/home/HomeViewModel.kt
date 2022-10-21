@@ -3,6 +3,7 @@ package dev.orlov.weather.ui.fragments.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.orlov.weather.domain.usecase.CityUseCases
 import dev.orlov.weather.domain.usecase.WeatherUseCases
 import dev.orlov.weather.utils.LoadState
 import dev.orlov.weather.utils.Request
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val weatherUseCases: WeatherUseCases) :
+class HomeViewModel @Inject constructor(private val weatherUseCases: WeatherUseCases, private val cityUseCases: CityUseCases) :
     ViewModel() {
 
     private val _uiState = MutableStateFlow(HomeUiState())
@@ -40,5 +41,4 @@ class HomeViewModel @Inject constructor(private val weatherUseCases: WeatherUseC
             }
         }
     }
-
 }

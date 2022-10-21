@@ -10,5 +10,6 @@ data class CityEntity(
     val name: String,
     val lat: Double,
     val lon: Double,
+    val country: String,
     val isMain: Boolean = false
 )

@@ -44,6 +44,7 @@ fun CityEntity.toDomain() = City(
     name = name,
     lat = lat,
     lon = lon,
+    country = country,
     isMain = isMain
 )
 
@@ -52,5 +53,15 @@ fun City.toEntity() = CityEntity(
     name = name,
     lat = lat,
     lon = lon,
+    country = country,
     isMain = isMain
+)
+
+fun CityDto.toDomain() = City(
+    id = id,
+    name = name,
+    lat = lat,
+    lon = lon,
+    country = country,
+    isMain = false
 )
