@@ -90,8 +90,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     private fun setupUi() {
         binding.apply {
             rvCities.adapter = adapter
-            edtSearch.doOnTextChanged { text, _, _, count ->
-                if (count > 1) viewModel.searchCity(text.toString().trim())
+            edtSearch.doOnTextChanged { text, _, _, _ ->
+                text?.let {
+                    if(it.length > 1) viewModel.searchCity(text.toString().trim())
+                }
             }
         }
     }

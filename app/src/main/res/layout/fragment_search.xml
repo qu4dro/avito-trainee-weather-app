@@ -34,14 +34,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:padding="12dp"
         android:id="@+id/rv_cities"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="4dp"
         android:clipToPadding="false"
-        android:visibility="gone"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:spanCount="2"
         app:layout_constraintEnd_toEndOf="parent"
         tools:listitem="@layout/item_city"
         app:layout_constraintStart_toStartOf="parent"
