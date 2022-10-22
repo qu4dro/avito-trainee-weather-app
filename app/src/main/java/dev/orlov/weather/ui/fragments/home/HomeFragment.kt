@@ -2,8 +2,10 @@ package dev.orlov.weather.ui.fragments.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -13,7 +15,8 @@ import dev.orlov.weather.R
 import dev.orlov.weather.databinding.FragmentHomeBinding
 import dev.orlov.weather.databinding.TodayOverviewBinding
 import dev.orlov.weather.domain.model.Weather
-import dev.orlov.weather.utils.LoadState
+import dev.orlov.weather.ui.adapters.HourAdapter
+import dev.orlov.weather.utils.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -23,6 +26,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private var _binding: FragmentHomeBinding? = null
     val binding
         get() = _binding!!
+
+    private val hourAdapter = HourAdapter()
 
     private val viewModel: HomeViewModel by activityViewModels()
 
@@ -37,6 +42,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUi()
         viewModel.getForecast()
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -61,6 +67,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun setUi() {
         binding.apply {
+            rvHourly.adapter = hourAdapter
             swipeRefresh.setOnRefreshListener {
                 viewModel.getForecast()
             }
@@ -84,19 +91,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             mainGroup.visibility = View.VISIBLE
             swipeRefresh.isRefreshing = false
             currentWeather.apply {
-                tvCurrentTemp.text = weather.current.temp.toString()
-                tvFeelsLike.text = weather.current.feelsLike.toString()
+                tvCurrentTemp.text = weather.current.temp.toCelsiusString()
+                tvFeelsLike.text =
+                    getString(R.string.feels_like, weather.current.feelsLike.toCelsiusString())
                 tvWeatherType.text = weather.current.condition.text
             }
             todayOverview.apply {
                 with(weather.forecast[0]) {
-                    tvMaxTempValue.text = this.maxTemp.toString()
-                    tvMinTempValue.text = this.minTemp.toString()
+                    tvMaxTempValue.text = this.maxTemp.toCelsiusString()
+                    tvMinTempValue.text = this.minTemp.toCelsiusString()
                     tvSunriseValue.text = this.sunrise
                     tvSunsetValue.text = this.sunset
+                    hourAdapter.submitList(this.hourly)
                 }
-                tvWindValue.text = weather.current.wind.toString()
-                tvHumidityValue.text = weather.current.humidity.toString()
+                tvWindValue.text = weather.current.wind.toWindStringMps()
+                tvHumidityValue.text = weather.current.humidity.toHumidityString()
             }
         }
     }

@@ -19,7 +19,7 @@ fun CurrentDto.toDomain() = Current(
 
 fun ConditionDto.toDomain() = Condition(
     text = text,
-    icon_url = icon
+    icon_url = "https:$icon"
 )
 
 fun ForecastdayDto.toDomain() = Forecast(

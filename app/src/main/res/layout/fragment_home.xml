@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -52,11 +53,25 @@
                 android:textAppearance="@style/Text.Semibold.20"
                 app:layout_constraintTop_toBottomOf="@id/today_overview" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="8dp"
+                android:id="@+id/rv_hourly"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/item_hour"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_hourly" />
+
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/main_group"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:constraint_referenced_ids="today_overview,current_weather,tv_today_overview,tv_hourly" />
+                app:constraint_referenced_ids="today_overview,current_weather,tv_today_overview,tv_hourly,rv_hourly" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
