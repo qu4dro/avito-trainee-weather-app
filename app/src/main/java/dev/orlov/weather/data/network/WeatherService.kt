@@ -12,6 +12,7 @@ interface WeatherService {
     @GET("forecast.json")
     suspend fun getForecast(
         @Query("q") q: String,
+        @Query("days") days: Int = 7,
         @Query("key") api_key: String = BuildConfig.API_KEY,
     ): GetForecastResponse
 

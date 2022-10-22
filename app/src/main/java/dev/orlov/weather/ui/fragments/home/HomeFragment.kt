@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import coil.load
 import dev.orlov.weather.R
 import dev.orlov.weather.databinding.FragmentHomeBinding
 import dev.orlov.weather.databinding.TodayOverviewBinding
@@ -102,6 +103,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             tvFeelsLike.text =
                 getString(R.string.feels_like, weather.current.feelsLike.toCelsiusString())
             tvWeatherType.text = weather.current.condition.text
+            ivWeatherIcon.load(weather.current.condition.icon_url)
         }
     }
 
@@ -121,10 +123,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun setTomorrow(weather: Weather) {
         binding.tomorrow.apply {
-            with(weather.forecast[0]) {
-                tvDate.text = this.date
+            with(weather.forecast[1]) {
+                tvDate.text = this.date.formatDayWeek()
                 tvTemp.text = this.temp.toCelsiusString()
                 tvWeatherType.text = this.condition.text
+                ivWeatherIcon.load(this.condition.icon_url)
             }
         }
     }

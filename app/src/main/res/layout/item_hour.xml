@@ -18,7 +18,8 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/Text.Semibold.14"
+            android:alpha="0.4"
+            android:textAppearance="@style/Text.Semibold.16"
             app:layout_constraintTop_toBottomOf="@id/tv_name"
             tools:text="13:00" />
 
@@ -37,7 +38,7 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/Text.Semibold.18"
+            android:textAppearance="@style/Text.Bold.16"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="23" />
 

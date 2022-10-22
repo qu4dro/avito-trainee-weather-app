@@ -14,4 +14,6 @@
     <string name="something_went_wrong">Something went wrong</string>
     <string name="start_your_search">Start typing city name</string>
     <string name="tomorrow">Tomorrow</string>
+    <string name="see_forecast">see forecast</string>
+    <string name="show_week">show week</string>
 </resources>

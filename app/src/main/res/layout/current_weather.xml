@@ -43,7 +43,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:maxLines="1"
-                android:textAppearance="@style/Text.Semibold.14"
+                android:alpha="0.4"
+                android:textAppearance="@style/Text.Semibold.16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="Feels like 19" />
 
@@ -86,7 +87,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:maxLines="1"
-                android:textAppearance="@style/Text.Semibold.14"
+                android:alpha="0.4"
+                android:textAppearance="@style/Text.Semibold.16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="Sunny" />
 

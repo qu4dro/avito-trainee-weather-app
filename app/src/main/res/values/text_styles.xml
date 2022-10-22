@@ -13,6 +13,12 @@
         <item name="lineHeight">60sp</item>
     </style>
 
+    <style name="Text.Semibold.36">
+        <item name="android:textSize">36sp</item>
+        <item name="lineHeight">38sp</item>
+
+    </style>
+
     <style name="Text.Semibold.24">
         <item name="android:textSize">24sp</item>
         <item name="lineHeight">26sp</item>
@@ -52,6 +58,21 @@
     <style name="Text.Semibold.10">
         <item name="android:textSize">10sp</item>
         <item name="lineHeight">12sp</item>
+    </style>
+
+    <!--Bold-->
+    <style name="Text.Bold">
+        <item name="fontFamily">@font/manrope_bold</item>
+    </style>
+
+    <style name="Text.Bold.20">
+        <item name="android:textSize">20sp</item>
+        <item name="lineHeight">22sp</item>
+    </style>
+
+    <style name="Text.Bold.16">
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">18sp</item>
     </style>
 
     <!--Medium-->

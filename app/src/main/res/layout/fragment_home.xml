@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/today_overview"
-                android:textAppearance="@style/Text.Semibold.20"
+                android:textAppearance="@style/Text.Bold.20"
                 app:layout_constraintTop_toBottomOf="@id/current_weather" />
 
             <include
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/hourly"
-                android:textAppearance="@style/Text.Semibold.20"
+                android:textAppearance="@style/Text.Bold.20"
                 app:layout_constraintTop_toBottomOf="@id/today_overview" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -68,19 +68,36 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_tomorrow"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/tomorrow"
-                android:textAppearance="@style/Text.Semibold.20"
+                android:textAppearance="@style/Text.Bold.20"
+                app:layout_constraintEnd_toStartOf="@id/btn_forecast"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_hourly" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/btn_forecast"
+                app:drawableTint="?colorOnPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?colorSecondaryVariant"
+                android:text="@string/show_week"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:alpha="0.4"
+                android:textAppearance="@style/Text.Semibold.16"
+                app:layout_constraintBottom_toBottomOf="@id/tv_tomorrow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_tomorrow"
+                app:layout_constraintTop_toTopOf="@id/tv_tomorrow" />
 
             <include
                 android:id="@+id/tomorrow"
-                android:layout_marginTop="8dp"
                 layout="@layout/item_forecast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@id/tv_tomorrow" />
 
             <androidx.constraintlayout.widget.Group
