@@ -90,22 +90,41 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.apply {
             mainGroup.visibility = View.VISIBLE
             swipeRefresh.isRefreshing = false
-            currentWeather.apply {
-                tvCurrentTemp.text = weather.current.temp.toCelsiusString()
-                tvFeelsLike.text =
-                    getString(R.string.feels_like, weather.current.feelsLike.toCelsiusString())
-                tvWeatherType.text = weather.current.condition.text
+            setCurrent(weather)
+            setToday(weather)
+            setTomorrow(weather)
+        }
+    }
+
+    private fun setCurrent(weather: Weather) {
+        binding.currentWeather.apply {
+            tvCurrentTemp.text = weather.current.temp.toCelsiusString()
+            tvFeelsLike.text =
+                getString(R.string.feels_like, weather.current.feelsLike.toCelsiusString())
+            tvWeatherType.text = weather.current.condition.text
+        }
+    }
+
+    private fun setToday(weather: Weather) {
+        binding.todayOverview.apply {
+            with(weather.forecast[0]) {
+                tvMaxTempValue.text = this.maxTemp.toCelsiusString()
+                tvMinTempValue.text = this.minTemp.toCelsiusString()
+                tvSunriseValue.text = this.sunrise
+                tvSunsetValue.text = this.sunset
+                hourAdapter.submitList(this.hourly)
             }
-            todayOverview.apply {
-                with(weather.forecast[0]) {
-                    tvMaxTempValue.text = this.maxTemp.toCelsiusString()
-                    tvMinTempValue.text = this.minTemp.toCelsiusString()
-                    tvSunriseValue.text = this.sunrise
-                    tvSunsetValue.text = this.sunset
-                    hourAdapter.submitList(this.hourly)
-                }
-                tvWindValue.text = weather.current.wind.toWindStringMps()
-                tvHumidityValue.text = weather.current.humidity.toHumidityString()
+            tvWindValue.text = weather.current.wind.toWindStringMps()
+            tvHumidityValue.text = weather.current.humidity.toHumidityString()
+        }
+    }
+
+    private fun setTomorrow(weather: Weather) {
+        binding.tomorrow.apply {
+            with(weather.forecast[0]) {
+                tvDate.text = this.date
+                tvTemp.text = this.temp.toCelsiusString()
+                tvWeatherType.text = this.condition.text
             }
         }
     }

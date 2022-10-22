@@ -13,4 +13,5 @@
     <string name="nothing_found_for_your_request">Nothing found for your request</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="start_your_search">Start typing city name</string>
+    <string name="tomorrow">Tomorrow</string>
 </resources>

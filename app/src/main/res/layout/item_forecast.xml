@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/FlatCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_date"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text.Semibold.20"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="17 Nov, Monday" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_temp"
+            android:layout_width="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text.Semibold.24"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="-5" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_weather_type"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text.Semibold.14"
+            app:layout_constraintTop_toBottomOf="@id/tv_date"
+            tools:text="Russia" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

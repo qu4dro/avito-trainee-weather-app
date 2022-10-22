@@ -54,24 +54,40 @@
                 app:layout_constraintTop_toBottomOf="@id/today_overview" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="8dp"
                 android:id="@+id/rv_hourly"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:clipToPadding="false"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:listitem="@layout/item_hour"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_hourly" />
+                app:layout_constraintTop_toBottomOf="@id/tv_hourly"
+                tools:listitem="@layout/item_hour" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_tomorrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tomorrow"
+                android:textAppearance="@style/Text.Semibold.20"
+                app:layout_constraintTop_toBottomOf="@id/rv_hourly" />
+
+            <include
+                android:id="@+id/tomorrow"
+                android:layout_marginTop="8dp"
+                layout="@layout/item_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_tomorrow" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/main_group"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:constraint_referenced_ids="today_overview,current_weather,tv_today_overview,tv_hourly,rv_hourly" />
+                app:constraint_referenced_ids="today_overview,current_weather,tv_today_overview,tv_hourly,rv_hourly,tv_tomorrow,tomorrow" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
