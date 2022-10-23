@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_forecastFragment"
+            app:destination="@id/forecastFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -30,5 +33,14 @@
             app:enterAnim="@android:anim/fade_in"
             app:popUpTo="@id/startedFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_forecast"
+        android:id="@+id/forecastFragment"
+        android:name="dev.orlov.weather.ui.fragments.forecast.ForecastFragment"
+        android:label="ForecastFragment" >
+        <argument
+            android:name="Forecast"
+            app:argType="dev.orlov.weather.domain.model.Forecast[]" />
     </fragment>
 </navigation>

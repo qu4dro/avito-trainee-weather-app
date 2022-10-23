@@ -76,8 +76,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z,true)
-        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z,false)
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
+        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
     }
 
     private fun setUi() {
@@ -88,6 +88,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
             ivSearch.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+            }
+            btnForecast.setOnClickListener {
+                val forecast = viewModel.uiState.value.weather?.forecast?.toTypedArray()
+                forecast?.let {
+                    val action = HomeFragmentDirections.actionHomeFragmentToForecastFragment(it)
+                    findNavController().navigate(action)
+                }
+
             }
         }
     }
