@@ -31,6 +31,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     private val adapter: CityAdapter = CityAdapter(object : CityAdapter.OnItemClickListener {
         override fun onCityClick(city: City) {
             viewModel.insertCity(city.copy(isMain = true))
+            findNavController().navigateUp()
         }
     })
 

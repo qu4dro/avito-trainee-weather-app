@@ -1,6 +1,5 @@
 package dev.orlov.weather.data.repository
 
-import androidx.lifecycle.Transformations
 import dev.orlov.weather.data.db.CitiesDao
 import dev.orlov.weather.data.network.WeatherService
 import dev.orlov.weather.data.toDomain
@@ -22,9 +21,9 @@ class CityRepositoryImpl @Inject constructor(
         dao.getCities().map { it.map { it.toDomain() } }
 
     override suspend fun updateMainCity(oldCity: City, newCity: City) =
-        dao.updateMainCity(oldCity.toEntity(), newCity.toEntity())
+        dao.updateSelectedCity(oldCity.toEntity().id)
 
-    override suspend fun insertCity(city: City) = dao.insertCity(city.toEntity())
+    override suspend fun insertCity(city: City) = dao.insertCityAndUpdateSelected(city.toEntity())
 
     override suspend fun deleteCity(city: City) = dao.deleteCity(city.toEntity())
 

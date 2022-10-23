@@ -17,16 +17,24 @@ interface CitiesDao {
     @Delete
     suspend fun deleteCity(city: CityEntity)
 
-    @Query("UPDATE cities SET isMain = :isMain WHERE id = :id")
-    fun updateIsMain(isMain: Boolean, id: Int)
+    @Query("UPDATE cities SET isMain = 0 WHERE id != :id")
+    fun setUnselected(id: Int)
+
+    @Query("UPDATE cities SET isMain = 1 WHERE id = :id")
+    fun setSelected(id: Int)
 
     @Transaction
-    suspend fun updateMainCity(
-        oldCity: CityEntity,
-        newCity: CityEntity
+    suspend fun updateSelectedCity(id: Int) {
+        setUnselected(id)
+        setSelected(id)
+    }
+
+    @Transaction
+    suspend fun insertCityAndUpdateSelected(
+        city: CityEntity
     ) {
-        updateIsMain(false, oldCity.id)
-        updateIsMain(true, newCity.id)
+        insertCity(city)
+        setUnselected(city.id)
     }
 
 }
