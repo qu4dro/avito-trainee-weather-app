@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.transition.MaterialSharedAxis
 import dev.orlov.weather.R
 import dev.orlov.weather.databinding.FragmentSearchBinding
 import dev.orlov.weather.domain.model.City
@@ -69,6 +70,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+    }
 
     private fun setLoadingUi() {
         binding.apply {

@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import coil.load
+import com.google.android.material.transition.MaterialSharedAxis
 import dev.orlov.weather.R
 import dev.orlov.weather.databinding.FragmentHomeBinding
 import dev.orlov.weather.domain.model.Weather
@@ -71,6 +72,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z,true)
+        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z,false)
     }
 
     private fun setUi() {

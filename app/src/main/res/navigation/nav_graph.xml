@@ -27,6 +27,7 @@
         <action
             android:id="@+id/action_startedFragment_to_homeFragment"
             app:destination="@id/homeFragment"
+            app:enterAnim="@android:anim/fade_in"
             app:popUpTo="@id/startedFragment"
             app:popUpToInclusive="true" />
     </fragment>
