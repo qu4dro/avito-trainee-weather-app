@@ -5,6 +5,37 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/top_bar_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="56dp" />
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="@android:color/transparent"
+        android:padding="4dp"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintBottom_toTopOf="@id/top_bar_guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="?colorOnPrimary" />
+
+    <com.google.android.material.textview.MaterialTextView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="16dp"
+        android:text="@string/search_city"
+        android:textAppearance="@style/Text.Bold.20"
+        app:layout_constraintBottom_toTopOf="@id/top_bar_guideline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
     <com.google.android.material.textfield.TextInputLayout
         style="@style/TextInputLayoutSearch"
         android:id="@+id/til_search"
@@ -18,7 +49,7 @@
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_bar_guideline"
         app:startIconDrawable="@drawable/ic_search">
 
         <com.google.android.material.textfield.TextInputEditText

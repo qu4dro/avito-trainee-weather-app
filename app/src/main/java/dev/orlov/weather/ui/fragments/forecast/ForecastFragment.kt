@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.transition.MaterialSharedAxis
 import dev.orlov.weather.R
@@ -60,6 +61,7 @@ class ForecastFragment : Fragment(R.layout.fragment_forecast) {
     private fun setUi() {
         binding.apply {
             rvForecast.adapter = adapter
+            btnBack.setOnClickListener { findNavController().navigateUp() }
         }
     }
 

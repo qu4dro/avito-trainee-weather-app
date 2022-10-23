@@ -1,9 +1,11 @@
 package dev.orlov.weather.ui.fragments.search
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -49,6 +51,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.clearSearchedCities()
         setupUi()
+        showKeyBoard()
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
@@ -98,6 +101,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     private fun setupUi() {
         binding.apply {
             rvCities.adapter = adapter
+            btnBack.setOnClickListener { findNavController().navigateUp() }
             edtSearch.doOnTextChanged { text, _, _, _ ->
                 text?.let {
                     if (it.length > 1) viewModel.searchCity(text.toString().trim())
@@ -107,6 +111,12 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                 }
             }
         }
+    }
+
+    private fun showKeyBoard() {
+        binding.edtSearch.requestFocus()
+        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm!!.showSoftInput( binding.edtSearch, InputMethodManager.SHOW_IMPLICIT)
     }
 
     override fun onDestroyView() {

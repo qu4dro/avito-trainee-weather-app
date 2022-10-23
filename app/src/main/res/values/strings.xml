@@ -16,4 +16,6 @@
     <string name="tomorrow">Tomorrow</string>
     <string name="see_forecast">see forecast</string>
     <string name="show_week">show week</string>
+    <string name="week_forecast">Week forecast</string>
+    <string name="search_city">Search city</string>
 </resources>
