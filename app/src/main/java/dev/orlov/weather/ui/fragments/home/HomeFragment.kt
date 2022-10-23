@@ -16,6 +16,7 @@ import dev.orlov.weather.R
 import dev.orlov.weather.databinding.FragmentHomeBinding
 import dev.orlov.weather.domain.model.Weather
 import dev.orlov.weather.ui.adapters.HourAdapter
+import dev.orlov.weather.ui.view.CitiesBottomSheet
 import dev.orlov.weather.utils.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -95,7 +96,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     val action = HomeFragmentDirections.actionHomeFragmentToForecastFragment(it)
                     findNavController().navigate(action)
                 }
-
+            }
+            tvCity.setOnClickListener {
+                    val bottomSheet = CitiesBottomSheet()
+                    bottomSheet.show(childFragmentManager, CitiesBottomSheet.BOTTOM_SHEET_CITIES_TAG)
             }
         }
     }

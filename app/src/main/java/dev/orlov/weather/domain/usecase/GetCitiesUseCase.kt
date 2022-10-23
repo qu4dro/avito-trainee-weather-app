@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class GetCitiesUseCase @Inject constructor(private val repository: CityRepository) {
 
-    suspend operator fun invoke() = repository.getCities()
+    operator fun invoke() = repository.getCities()
 
 }
