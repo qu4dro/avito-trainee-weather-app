@@ -9,4 +9,25 @@
         <item name="cardCornerRadius">16dp</item>
     </style>
 
+    <style name="TextInputLayoutSearch" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="boxCornerRadiusTopEnd">22dp</item>
+        <item name="boxCornerRadiusTopStart">22dp</item>
+        <item name="boxCornerRadiusBottomEnd">22dp</item>
+        <item name="boxCornerRadiusBottomStart">22dp</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="errorTextAppearance">@style/Text.Regular.12</item>
+        <item name="hintTextAppearance">@style/Text.Medium.12</item>
+        <item name="errorIconDrawable">@null</item>
+        <item name="boxBackgroundColor">?attr/colorPrimaryVariant</item>
+        <item name="endIconTint">?attr/colorOnPrimary</item>
+        <item name="startIconTint">?attr/colorOnPrimary</item>
+        <item name="android:textColorHint">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="TextInputEditTextSearch">
+        <item name="android:textAppearance">@style/Text.Semibold.14</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

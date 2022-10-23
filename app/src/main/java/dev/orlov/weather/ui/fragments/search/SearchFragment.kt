@@ -46,8 +46,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.clearSearchedCities()
         setupUi()
-
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
@@ -94,7 +94,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             rvCities.adapter = adapter
             edtSearch.doOnTextChanged { text, _, _, _ ->
                 text?.let {
-                    if(it.length > 1) viewModel.searchCity(text.toString().trim())
+                    if (it.length > 1) viewModel.searchCity(text.toString().trim())
+                    else {
+                        viewModel.clearSearchedCities()
+                    }
                 }
             }
         }

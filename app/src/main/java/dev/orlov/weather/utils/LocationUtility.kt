@@ -8,7 +8,11 @@ import android.os.Build
 import pub.devrel.easypermissions.EasyPermissions
 import java.util.*
 
-data class Coordinates(val lng: Double, val lat: Double)
+data class Coordinates(val lng: Double, val lat: Double) {
+    override fun toString(): String {
+        return "$lat,$lng"
+    }
+}
 
 object LocationUtility {
 

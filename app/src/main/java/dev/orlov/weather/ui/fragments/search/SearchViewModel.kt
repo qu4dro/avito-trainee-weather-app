@@ -66,5 +66,9 @@ class SearchViewModel @Inject constructor(private val cityUseCases: CityUseCases
         cityUseCases.insertCity.invoke(city)
     }
 
+    fun clearSearchedCities() {
+        _uiState.update { it.copy(cities = listOf()) }
+    }
+
 
 }
