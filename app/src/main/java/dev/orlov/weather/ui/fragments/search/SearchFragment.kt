@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -82,18 +83,22 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     private fun setLoadingUi() {
         binding.apply {
             rvCities.visibility = View.GONE
+            progress.visibility = View.VISIBLE
         }
     }
 
     private fun setErrorUi() {
         binding.apply {
             rvCities.visibility = View.GONE
+            progress.visibility = View.GONE
+            Toast.makeText(requireContext(), getText(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun setSuccessUi(cities: List<City>) {
         binding.apply {
             adapter.submitList(cities)
+            progress.visibility = View.GONE
             rvCities.visibility = View.VISIBLE
         }
     }

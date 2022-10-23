@@ -5,6 +5,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        app:trackColor="?attr/colorPrimaryVariant"
+        android:visibility="gone"
+        android:id="@+id/progress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:indeterminate="true" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:padding="12dp"
         android:id="@+id/rv_cities"
