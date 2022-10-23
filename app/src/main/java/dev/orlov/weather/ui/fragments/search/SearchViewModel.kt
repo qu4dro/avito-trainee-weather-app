@@ -3,6 +3,7 @@ package dev.orlov.weather.ui.fragments.search
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.orlov.weather.domain.model.City
 import dev.orlov.weather.domain.usecase.CityUseCases
 import dev.orlov.weather.ui.fragments.home.HomeUiState
 import dev.orlov.weather.utils.LoadState
@@ -59,6 +60,10 @@ class SearchViewModel @Inject constructor(private val cityUseCases: CityUseCases
                 }
             }
         }
+    }
+
+    fun insertCity(city: City) = viewModelScope.launch(Dispatchers.IO) {
+        cityUseCases.insertCity.invoke(city)
     }
 
 

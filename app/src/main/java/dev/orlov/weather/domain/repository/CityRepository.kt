@@ -1,14 +1,12 @@
 package dev.orlov.weather.domain.repository
 
-import androidx.lifecycle.LiveData
 import dev.orlov.weather.domain.model.City
 import dev.orlov.weather.utils.Request
 import kotlinx.coroutines.flow.Flow
 
 interface CityRepository {
 
-    fun getMainCity(): LiveData<City>
-    fun getCities(): LiveData<List<City>>
+    fun getCities(): Flow<List<City>>
 
     suspend fun updateMainCity(
         oldCity: City,

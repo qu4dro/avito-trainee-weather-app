@@ -2,23 +2,20 @@ package dev.orlov.weather.ui.fragments.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import coil.load
 import dev.orlov.weather.R
 import dev.orlov.weather.databinding.FragmentHomeBinding
-import dev.orlov.weather.databinding.TodayOverviewBinding
 import dev.orlov.weather.domain.model.Weather
 import dev.orlov.weather.ui.adapters.HourAdapter
 import dev.orlov.weather.utils.*
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -44,7 +41,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUi()
-        viewModel.getForecast()
+
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->

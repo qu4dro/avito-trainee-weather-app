@@ -6,19 +6,17 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.orlov.weather.domain.repository.CityRepository
 import dev.orlov.weather.domain.repository.WeatherRepository
-import dev.orlov.weather.domain.usecase.CityUseCases
-import dev.orlov.weather.domain.usecase.GetForecastUseCase
-import dev.orlov.weather.domain.usecase.SearchCityUseCase
-import dev.orlov.weather.domain.usecase.WeatherUseCases
+import dev.orlov.weather.domain.usecase.*
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class UseCaseModule {
+object UseCaseModule {
 
     @Singleton
     @Provides
-    fun provideGetForecastUseCase(weatherRepository: WeatherRepository) = GetForecastUseCase(weatherRepository)
+    fun provideGetForecastUseCase(weatherRepository: WeatherRepository) =
+        GetForecastUseCase(weatherRepository)
 
     @Singleton
     @Provides
@@ -30,5 +28,18 @@ class UseCaseModule {
 
     @Singleton
     @Provides
-    fun provideCityUseCases(searchCity: SearchCityUseCase) = CityUseCases(searchCity)
+    fun provideGetCitiesUseCase(cityRepository: CityRepository) =
+        GetCitiesUseCase(cityRepository)
+
+    @Singleton
+    @Provides
+    fun provideInsertCityUseCase(cityRepository: CityRepository) = InsertCityUseCase(cityRepository)
+
+    @Singleton
+    @Provides
+    fun provideCityUseCases(
+        searchCity: SearchCityUseCase,
+        getCitiesUseCase: GetCitiesUseCase,
+        insertCityUseCase: InsertCityUseCase
+    ) = CityUseCases(searchCity, getCitiesUseCase, insertCityUseCase)
 }

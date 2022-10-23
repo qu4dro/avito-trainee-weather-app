@@ -10,6 +10,7 @@ import dev.orlov.weather.domain.repository.CityRepository
 import dev.orlov.weather.utils.Request
 import dev.orlov.weather.utils.RequestUtils
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class CityRepositoryImpl @Inject constructor(
@@ -17,10 +18,8 @@ class CityRepositoryImpl @Inject constructor(
     private val service: WeatherService
 ) : CityRepository {
 
-    override fun getMainCity() = Transformations.map(dao.getMainCity()) { it.toDomain() }
-
     override fun getCities() =
-        Transformations.map(dao.getCities()) { cities -> cities.map { it.toDomain() } }
+        dao.getCities().map { it.map { it.toDomain() } }
 
     override suspend fun updateMainCity(oldCity: City, newCity: City) =
         dao.updateMainCity(oldCity.toEntity(), newCity.toEntity())

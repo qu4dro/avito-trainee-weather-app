@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import dev.orlov.weather.R
 import dev.orlov.weather.databinding.FragmentSearchBinding
 import dev.orlov.weather.domain.model.City
@@ -29,7 +30,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     private val viewModel: SearchViewModel by activityViewModels()
     private val adapter: CityAdapter = CityAdapter(object : CityAdapter.OnItemClickListener {
         override fun onCityClick(city: City) {
-
+            viewModel.insertCity(city.copy(isMain = true))
         }
     })
 

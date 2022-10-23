@@ -79,14 +79,14 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/btn_forecast"
-                app:drawableTint="?colorOnPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?colorSecondaryVariant"
-                android:text="@string/show_week"
-                android:drawableEnd="@drawable/ic_arrow_down"
                 android:alpha="0.4"
+                android:backgroundTint="?colorSecondaryVariant"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:text="@string/show_week"
                 android:textAppearance="@style/Text.Semibold.16"
+                app:drawableTint="?colorOnPrimary"
                 app:layout_constraintBottom_toBottomOf="@id/tv_tomorrow"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_tomorrow"
@@ -104,7 +104,8 @@
                 android:id="@+id/main_group"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:constraint_referenced_ids="today_overview,current_weather,tv_today_overview,tv_hourly,rv_hourly,tv_tomorrow,tomorrow" />
+                android:visibility="visible"
+                app:constraint_referenced_ids="btn_forecast,today_overview,current_weather,tv_today_overview,tv_hourly,rv_hourly,tv_tomorrow,tomorrow" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
