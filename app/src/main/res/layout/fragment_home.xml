@@ -16,14 +16,50 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_search"
+                app:drawableTint="?colorOnPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/tv_city"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_city"
+                app:layout_constraintTop_toTopOf="@id/tv_city"
+                app:tint="?colorOnPrimary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_city"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/round"
+                android:textColor="?attr/colorOnSecondary"
+                android:backgroundTint="?attr/colorSecondaryVariant"
+                android:clickable="true"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center_vertical|start"
+                android:paddingVertical="6dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
+                android:textAppearance="@style/Text.Semibold.24"
+                app:drawableTint="?attr/colorOnSecondary"
+                app:layout_constraintEnd_toStartOf="@id/iv_search"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Moscow" />
+
             <include
                 android:id="@+id/current_weather"
                 layout="@layout/current_weather"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/tv_city" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_today_overview"
@@ -105,7 +141,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:visibility="visible"
-                app:constraint_referenced_ids="btn_forecast,today_overview,current_weather,tv_today_overview,tv_hourly,rv_hourly,tv_tomorrow,tomorrow" />
+                app:constraint_referenced_ids="tv_city,iv_search,btn_forecast,today_overview,current_weather,tv_today_overview,tv_hourly,rv_hourly,tv_tomorrow,tomorrow" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

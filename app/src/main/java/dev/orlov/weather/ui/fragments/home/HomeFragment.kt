@@ -47,6 +47,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.map { it.selectedCity }.distinctUntilChanged().collect {
                     viewModel.getForecast()
+                    binding.tvCity.text = it?.name
                 }
             }
         }
@@ -76,6 +77,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             rvHourly.adapter = hourAdapter
             swipeRefresh.setOnRefreshListener {
                 viewModel.getForecast()
+            }
+            ivSearch.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
             }
         }
     }

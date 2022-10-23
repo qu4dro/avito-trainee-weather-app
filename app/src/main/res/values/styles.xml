@@ -3,7 +3,7 @@
 
     <style name="FlatCard" parent="Widget.Material3.CardView.Filled">
         <item name="elevation">0dp</item>
-        <item name="android:backgroundTint">?attr/colorOnSecondary</item>
+        <item name="android:backgroundTint">?attr/colorPrimaryVariant</item>
         <item name="cardElevation">0dp</item>
         <item name="android:elevation">0dp</item>
         <item name="cardCornerRadius">16dp</item>

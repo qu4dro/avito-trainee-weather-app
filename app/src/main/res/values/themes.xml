@@ -3,7 +3,7 @@
     <style name="Theme.Weather" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/light_blue</item>
-        <item name="colorPrimaryVariant">@color/light_brown</item>
+        <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/toxic_blue</item>
