@@ -23,6 +23,9 @@ import dev.orlov.weather.utils.Coordinates
 import dev.orlov.weather.utils.LoadState
 import dev.orlov.weather.utils.LocationUtility
 import dev.orlov.weather.utils.REQUEST_CODE_LOCATION_PERMISSION
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
@@ -54,12 +57,10 @@ class StartedFragment : Fragment(R.layout.fragment_started), EasyPermissions.Per
         super.onViewCreated(view, savedInstanceState)
         setupUi()
         getCurrentLocation()
-
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect { uiState ->
-                    Timber.d(uiState.toString())
-                    if (uiState.isCitySelected && uiState.isPermissionsGranted) {
+                viewModel.uiState.collectLatest { uiState ->
+                    if (uiState.isCitySelected && uiState.isPermissionsGranted && uiState.isGpsEnabled) {
                         findNavController().navigate(R.id.action_startedFragment_to_homeFragment)
                     }
                     uiState.loadState?.let {

@@ -16,6 +16,7 @@ import dev.orlov.weather.databinding.FragmentHomeBinding
 import dev.orlov.weather.domain.model.Weather
 import dev.orlov.weather.ui.adapters.HourAdapter
 import dev.orlov.weather.utils.*
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -45,7 +46,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         setUi()
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.map { it.selectedCity }.distinctUntilChanged().collect {
+                viewModel.uiState.map { it.selectedCity }.distinctUntilChanged().collectLatest {
                     viewModel.getForecast()
                     binding.tvCity.text = it?.name
                 }
@@ -53,7 +54,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect { uiState ->
+                viewModel.uiState.collectLatest { uiState ->
                     when (uiState.loadState) {
                         LoadState.LOADING -> {
                             setLoadingUi()
