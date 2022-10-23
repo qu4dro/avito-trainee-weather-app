@@ -32,7 +32,8 @@ class HomeViewModel @Inject constructor(
     init {
         viewModelScope.launch(Dispatchers.IO) {
             cityUseCases.getCities.invoke().collect { cities ->
-                _uiState.update { it.copy(savedCities = cities) }
+                val selectedCity = cities.first { it.isMain }
+                _uiState.update { it.copy(savedCities = cities, selectedCity = selectedCity) }
             }
         }
     }
@@ -40,21 +41,27 @@ class HomeViewModel @Inject constructor(
     fun getForecast() {
         getWeatherJob?.cancel()
         getWeatherJob = viewModelScope.launch(Dispatchers.IO) {
-            weatherUseCases.getForecast("Omsk").collect { request ->
-                when (request) {
-                    is Request.Error -> _uiState.update { it.copy(loadState = LoadState.ERROR) }
-                    is Request.Loading -> _uiState.update { it.copy(loadState = LoadState.LOADING) }
-                    is Request.Success -> {
-                        val data = request.data
-                        _uiState.update {
-                            it.copy(
-                                loadState = LoadState.SUCCESS,
-                                weather = data
-                            )
+            _uiState.value.selectedCity?.let { city ->
+                weatherUseCases.getForecast(city.name).collect { request ->
+                    when (request) {
+                        is Request.Error -> _uiState.update { it.copy(loadState = LoadState.ERROR) }
+                        is Request.Loading -> _uiState.update { it.copy(loadState = LoadState.LOADING) }
+                        is Request.Success -> {
+                            val data = request.data
+                            _uiState.update {
+                                it.copy(
+                                    loadState = LoadState.SUCCESS,
+                                    weather = data
+                                )
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    fun updateSelectedCity(city: City) {
+        _uiState.update { it.copy(selectedCity = city) }
     }
 }

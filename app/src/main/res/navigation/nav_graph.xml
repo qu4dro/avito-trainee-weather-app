@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/startedFragment">
 
     <fragment
         tools:layout="@layout/fragment_home"
@@ -19,4 +19,15 @@
         tools:layout="@layout/fragment_search"
         android:name="dev.orlov.weather.ui.fragments.search.SearchFragment"
         android:label="SearchFragment" />
+    <fragment
+        tools:layout="@layout/fragment_started"
+        android:id="@+id/startedFragment"
+        android:name="dev.orlov.weather.ui.fragments.started.StartedFragment"
+        android:label="StartedFragment" >
+        <action
+            android:id="@+id/action_startedFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/startedFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

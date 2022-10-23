@@ -6,6 +6,7 @@ import dev.orlov.weather.utils.LoadState
 
 data class HomeUiState(
     val savedCities: List<City> = listOf(),
+    val selectedCity: City? = null,
     val loadState: LoadState = LoadState.SUCCESS,
     val weather: Weather? = null
 )
