@@ -37,9 +37,15 @@ object UseCaseModule {
 
     @Singleton
     @Provides
+    fun provideUpdateSelectedCityUseCase(cityRepository: CityRepository) =
+        UpdateSelectedCityUseCase(cityRepository)
+
+    @Singleton
+    @Provides
     fun provideCityUseCases(
         searchCity: SearchCityUseCase,
         getCitiesUseCase: GetCitiesUseCase,
-        insertCityUseCase: InsertCityUseCase
-    ) = CityUseCases(searchCity, getCitiesUseCase, insertCityUseCase)
+        insertCityUseCase: InsertCityUseCase,
+        updateSelectedCityUseCase: UpdateSelectedCityUseCase
+    ) = CityUseCases(searchCity, getCitiesUseCase, insertCityUseCase, updateSelectedCityUseCase)
 }

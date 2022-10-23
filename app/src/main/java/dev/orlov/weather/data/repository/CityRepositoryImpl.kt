@@ -20,8 +20,8 @@ class CityRepositoryImpl @Inject constructor(
     override fun getCities() =
         dao.getCities().map { it.map { it.toDomain() } }
 
-    override suspend fun updateMainCity(oldCity: City, newCity: City) =
-        dao.updateSelectedCity(oldCity.toEntity().id)
+    override suspend fun updateMainCity(city: City) =
+        dao.updateSelectedCity(city.toEntity().id)
 
     override suspend fun insertCity(city: City) = dao.insertCityAndUpdateSelected(city.toEntity())
 

@@ -20,7 +20,8 @@ class CitiesBottomSheet : BottomSheetDialogFragment() {
 
     private val adapter: CityAdapter = CityAdapter(object : CityAdapter.OnItemClickListener {
         override fun onCityClick(city: City) {
-
+            viewModel.updateSelectedCity(city)
+            this@CitiesBottomSheet.dismiss()
         }
     })
 
